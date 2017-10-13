@@ -180,7 +180,9 @@ module tb_top();
     #120 rst_n <=1;
 
     @(pc_write_to_host_cnt == 32'd8) #10 rst_n <=1;
+`ifdef ENABLE_TB_FORCE
     @((~tb_tmr_irq) & (~tb_sft_irq) & (~tb_ext_irq)) #10 rst_n <=1;// Wait the interrupt to complete
+`endif
 
         $display("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         $display("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");

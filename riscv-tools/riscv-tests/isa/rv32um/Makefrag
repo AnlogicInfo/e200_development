@@ -3,7 +3,6 @@
 #-----------------------------------------------------------------------
 
 rv32um_sc_tests = \
-	bpu_wait \
 	div divu \
 	mul mulh mulhsu mulhu \
 	rem remu \

@@ -1,5 +1,5 @@
 
-rv32um-p-bpu_wait:     file format elf32-littleriscv
+rv32uf-p-bpu_wait:     file format elf32-littleriscv
 
 
 Disassembly of section .text.init:

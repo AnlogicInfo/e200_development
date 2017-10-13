@@ -5,4 +5,4 @@
 #define RVTEST_RV64M RVTEST_RV32M
 #define __MACHINE_MODE
 
-#include "../rv64mi/wfi.S"
+#include "../rv64uf/wfi.S"

@@ -1,5 +1,5 @@
 
-rv32mi-p-wfi:     file format elf32-littleriscv
+rv32uf-p-wfi:     file format elf32-littleriscv
 
 
 Disassembly of section .text.init:
