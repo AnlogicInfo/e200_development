@@ -83,6 +83,16 @@ module tb_top();
 
   reg tb_itcm_bus_err;
 
+  reg tb_ext_irq;
+  reg tb_tmr_irq;
+  reg tb_sft_irq;
+  initial begin
+    tb_ext_irq = 1'b0;
+    tb_tmr_irq = 1'b0;
+    tb_sft_irq = 1'b0;
+  end
+
+`ifdef ENABLE_TB_FORCE
   initial begin
     tb_itcm_bus_err = 1'b0;
     #100
@@ -96,11 +106,7 @@ module tb_top();
     end
   end
 
-  reg tb_ext_irq;
-  reg tb_tmr_irq;
-  reg tb_sft_irq;
 
-`ifdef ENABLE_TB_FORCE
   initial begin
     force `EXT_IRQ = tb_ext_irq;
     force `SFT_IRQ = tb_sft_irq;
@@ -113,11 +119,9 @@ module tb_top();
                         & `ITCM_BUS_READ
                         ;
   end
-`endif
 
 
   initial begin
-    tb_ext_irq = 1'b0;
     #100
     @(pc == `PC_AFTER_SETMTVEC ) // Wait the program goes out the reset_vector program
     forever begin
@@ -132,7 +136,6 @@ module tb_top();
   end
 
   initial begin
-    tb_sft_irq = 1'b0;
     #100
     @(pc == `PC_AFTER_SETMTVEC ) // Wait the program goes out the reset_vector program
     forever begin
@@ -147,7 +150,6 @@ module tb_top();
   end
 
   initial begin
-    tb_tmr_irq = 1'b0;
     #100
     @(pc == `PC_AFTER_SETMTVEC ) // Wait the program goes out the reset_vector program
     forever begin
@@ -160,6 +162,7 @@ module tb_top();
       end
     end
   end
+`endif
 
   reg[8*300:1] testcase;
   integer dumpwave;
